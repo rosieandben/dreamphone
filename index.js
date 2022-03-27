@@ -1,11 +1,16 @@
-var count = 0;
+let count = 0;
+
+$('.modal-exit').on('click', function() {
+  $('.modal').toggleClass('open');
+});
 
 $(".digit").on('click', function() {
-  var num = ($(this).clone().children().remove().end().text());
-  if (count < 11) {
+  const num = ($(this).clone().children().remove().end().text());
+  if (count < 9) {
     $("#output").append('<span>' + num.trim() + '</span>');
-
     count++
+  } else {
+    dial();
   }
 });
 
@@ -13,3 +18,9 @@ $('.fa-long-arrow-left').on('click', function() {
   $('#output span:last-child').remove();
   count--;
 });
+
+const dial = () => {
+  setTimeout(() => {
+    $('.modal').toggleClass('open');
+  }, 200)
+} 

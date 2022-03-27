@@ -1,7 +1,15 @@
-body {
-    background-image: url(resources/dream-phone-guys.jpeg);
-  }
+  body {
+    width: 100vw;
+    height: 100vh;
+  }  
   
+  .header {
+    top: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(101, 96, 165);
+  }
+
   .row {
     margin: 0 auto;
     width: 280px;
@@ -10,13 +18,14 @@ body {
     font-family: 'Exo';
   }
   
-  .digit,
-  .dig {
+  .digit {
     float: left;
     padding: 10px 30px;
     width: 30px;
     font-size: 2rem;
     cursor: pointer;
+    color: white;
+    background-color: black;
   }
   
   .sub {
@@ -25,7 +34,8 @@ body {
   }
   
   .container {
-    background-color: white;
+    background-color: rgb(230, 120, 185);
+    border-radius: 5%;
     width: 320px;
     padding: 20px;
     margin: 30px auto;
@@ -53,27 +63,53 @@ body {
     cursor: pointer;
   }
   
-  .botrow {
-    margin: 0 auto;
-    width: 280px;
-    clear: both;
-    text-align: center;
-    font-family: 'Exo';
-  }
-  
-  .digit:active,
-  .dig:active {
+  .digit:active {
     background-color: #e6e6e6;
   }
   
   #call:hover {
     background-color: #81c784;
   }
-  
-  .dig {
-    float: left;
-    padding: 10px 20px;
-    margin: 10px;
-    width: 30px;
+
+  .modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal.open {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  .modal-bg {
+    position: absolute;
+    background: teal;
+    width: 100%;
+    height: 100%;
+  }
+  .modal-container {
+    border-radius: 10px;
+    background: #fff;
+    position: relative;
+    padding: 30px;
+  }
+  .modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    outline: none;
+    appearance: none;
+    color: red;
+    background: none;
+    border: 0px;
+    font-weight: bold;
     cursor: pointer;
   }

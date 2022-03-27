@@ -1,56 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-        <script src="resources/jquery-3.6.0.min.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div id="output"></div>
-            <div class="row">
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="resources/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="./resources/dream-phone-logo.jpeg" />
+    </div>
+    <div class="container">
+        <div id="output"></div>
+        <div class="row">
             <div class="digit" id="one">1</div>
-            <div class="digit" id="two">2
-                <div class="sub">ABC</div>
-            </div>
-            <div class="digit" id="three">3
-                <div class="sub">DEF</div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="digit" id="four">4
-                <div class="sub">GHI</div>
-            </div>
-            <div class="digit" id="five">5
-                <div class="sub">JKL</div>
-            </div>
-            <div class="digit">6
-                <div class="sub">MNO</div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="digit">7
-                <div class="sub">PQRS</div>
-            </div>
-            <div class="digit">8
-                <div class="sub">TUV</div>
-            </div>
-            <div class="digit">9
-                <div class="sub">WXYZ</div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="digit">*
-            </div>
-            <div class="digit">0
-            </div>
-            <div class="digit">#
-            </div>
-            </div>
-            <div class="botrow"><i class="fa fa-star-o dig" aria-hidden="true"></i>
-            <div id="call"><i class="fa fa-phone" aria-hidden="true"></i></div>
-            <i class="fa fa-long-arrow-left dig" aria-hidden="true"></i>
-            </div>
+            <div class="digit" id="two">2</div>
+            <div class="digit" id="three">3</div>
         </div>
-        <script src="index.js"></script>
-    </body>
+        <div class="row">
+            <div class="digit" id="four">4</div>
+            <div class="digit" id="five">5</div>
+            <div class="digit" id="six">6</div>
+        </div>
+        <div class="row">
+            <div class="digit" id="seven">7</div>
+            <div class="digit" id="eight">8</div>
+            <div class="digit" id="nine">9</div>
+        </div>
+        <div class="row">
+            <div class="digit" id="star">*</div>
+            <div class="digit" id="zero">0</div>
+            <div class="digit" id="hash">#</div>
+        </div>
+    </div>
+    <div class="modal" id="modal-one">
+        <div class="modal-bg modal-exit"></div>
+        <div class="modal-container">
+            <h1>Amazing Modal</h1>
+            <h2>Pure Vanilla JavaScript</h2>
+            <button class="modal-close modal-exit">X</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
 </html>
