@@ -5,9 +5,13 @@ $('.modal-exit').on('click', function() {
 });
 
 $(".digit").on('click', function() {
-  const num = ($(this).clone().children().remove().end().text());
-  if (count < 9) {
-    $("#output").append('<span>' + num.trim() + '</span>');
+  let num = ($(this).clone().children().remove().end().text());
+  if (count === 2) {
+    num += '-';
+  }
+
+  $("#output").append('<span>' + num.trim() + '</span>');
+  if (count < 6) {
     count++
   } else {
     dial();
