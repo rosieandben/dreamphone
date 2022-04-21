@@ -1,3 +1,5 @@
+import { boys } from './models.js';
+
 let count = 0;
 
 $('.modal-exit').on('click', function() {
@@ -26,5 +28,8 @@ $('.fa-long-arrow-left').on('click', function() {
 const dial = () => {
   setTimeout(() => {
     $('.modal').toggleClass('open');
+    const dialledBoy = boys.find(x => x.number === $('#output').text());
+    $('#modal-header').text(dialledBoy.name);
+    $('#output').text('');
   }, 200)
 } 
