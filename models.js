@@ -1,4 +1,4 @@
-const AnswerAbout = {
+export const AnswerAbout = {
     Location: 'Location',
     Sport: 'Sport',
     Food: 'Food',
@@ -41,6 +41,12 @@ const Clothes = {
     Yellow: 'Yellow'
 }
 
+const GameAttributes = {
+    isAdmirer: false,
+    allocatedVideo: null,
+    answerToReveal: null
+}
+
 export const boys = [
     {
         name: 'Dave',
@@ -49,7 +55,8 @@ export const boys = [
         location: Location.Mall,
         sport: null,
         food: Food.Biscuits,
-        clothes: Clothes.Jeans
+        clothes: Clothes.Jeans,
+        gameAttributes: GameAttributes
     },
     {
         name: 'George',
@@ -58,7 +65,8 @@ export const boys = [
         location: Location.Mall,
         sport: null,
         food: Food.IceCream,
-        clothes: Clothes.Tie
+        clothes: Clothes.Tie,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Chris',
@@ -67,7 +75,8 @@ export const boys = [
         location: Location.Mall,
         sport: null,
         food: Food.IceCream,
-        clothes: Clothes.Jacket
+        clothes: Clothes.Jacket,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Alan',
@@ -76,7 +85,8 @@ export const boys = [
         location: Location.Mall,
         sport: null,
         food: Food.Biscuits,
-        clothes: Clothes.Tie
+        clothes: Clothes.Tie,
+        gameAttributes: GameAttributes
     },
     {
         name: 'James',
@@ -85,7 +95,8 @@ export const boys = [
         location: Location.SnackShop,
         sport: null,
         food: Food.HotDogs,
-        clothes: Clothes.Jacket
+        clothes: Clothes.Jacket,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Phil',
@@ -103,7 +114,8 @@ export const boys = [
         location: Location.SnackShop,
         sport: null,
         food: Food.Pizza,
-        clothes: Clothes.Tie
+        clothes: Clothes.Tie,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Andy',
@@ -112,7 +124,8 @@ export const boys = [
         location: Location.SnackShop,
         sport: null,
         food: Food.HotDogs,
-        clothes: Clothes.Jeans
+        clothes: Clothes.Jeans,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Ben',
@@ -121,7 +134,8 @@ export const boys = [
         location: Location.Movies,
         sport: null,
         food: Food.Sweets,
-        clothes: Clothes.Tie
+        clothes: Clothes.Tie,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Gary', 
@@ -130,7 +144,8 @@ export const boys = [
         location: Location.Movies,
         sport: null,
         food: Food.Popcorn,
-        clothes: Clothes.Jeans
+        clothes: Clothes.Jeans,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Dan',
@@ -139,7 +154,8 @@ export const boys = [
         location: Location.Movies,
         sport: null,
         food: Food.Sweets,
-        clothes: Clothes.Jeans
+        clothes: Clothes.Jeans,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Henry',
@@ -148,7 +164,8 @@ export const boys = [
         location: Location.Movies,
         sport: null,
         food: Food.Popcorn,
-        clothes: Clothes.Jacket
+        clothes: Clothes.Jacket,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Mark',
@@ -157,7 +174,8 @@ export const boys = [
         location: Location.Park,
         sport: Sport.Football,
         food: null,
-        clothes: Clothes.Hat
+        clothes: Clothes.Hat,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Jason',
@@ -166,7 +184,8 @@ export const boys = [
         location: Location.Park,
         sport: Sport.Football,
         food: null,
-        clothes: Clothes.Glasses
+        clothes: Clothes.Glasses,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Steve',
@@ -175,7 +194,8 @@ export const boys = [
         location: Location.Park,
         sport: Sport.Skateboarding,
         food: null,
-        clothes: Clothes.Jacket
+        clothes: Clothes.Jacket,
+        gameAttributes: GameAttributes
     },
     {
         name: 'John',
@@ -184,7 +204,8 @@ export const boys = [
         location: Location.Park,
         sport: Sport.Skateboarding,
         food: null,
-        clothes: Clothes.Yellow        
+        clothes: Clothes.Yellow,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Paul',
@@ -193,7 +214,8 @@ export const boys = [
         location: Location.Beach,
         sport: Sport.Volleyball,
         food: null,
-        clothes: Clothes.Yellow
+        clothes: Clothes.Yellow,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Tony',
@@ -202,7 +224,8 @@ export const boys = [
         location: Location.Beach,
         sport: Sport.Volleyball,
         food: null,
-        clothes: Clothes.Hat
+        clothes: Clothes.Hat,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Richard',
@@ -211,7 +234,8 @@ export const boys = [
         location: Location.Beach,
         sport: Sport.Surfing,
         food: null,
-        clothes: Clothes.Yellow
+        clothes: Clothes.Yellow,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Mike',
@@ -220,7 +244,8 @@ export const boys = [
         location: Location.Beach,
         sport: Sport.Surfing,
         food: null,
-        clothes: Clothes.Hat
+        clothes: Clothes.Hat,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Scott',
@@ -229,7 +254,8 @@ export const boys = [
         location: Location.Gym,
         sport: Sport.Basketball,
         food: null,
-        clothes: Clothes.Yellow
+        clothes: Clothes.Yellow,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Bob',
@@ -238,7 +264,8 @@ export const boys = [
         location: Location.Gym,
         sport: Sport.Basketball,
         food: null,
-        clothes: Clothes.Glasses
+        clothes: Clothes.Glasses,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Charlie',
@@ -247,7 +274,8 @@ export const boys = [
         location: Location.Gym,
         sport: Sport.Tennis,
         food: null,
-        clothes: Clothes.Hat
+        clothes: Clothes.Hat,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Matt',
@@ -256,6 +284,7 @@ export const boys = [
         location: Location.Gym,
         sport: Sport.Tennis,
         food: null,
-        clothes: Clothes.Glasses
+        clothes: Clothes.Glasses,
+        gameAttributes: GameAttributes
     }
 ]
