@@ -16,6 +16,7 @@ $(".digit").on('click', function() {
   if (count < 6) {
     count++
   } else {
+    count = 0;
     dial();
   }
 });
