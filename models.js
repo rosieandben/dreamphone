@@ -105,7 +105,8 @@ export const boys = [
         location: Location.SnackShop,
         sport: null,
         food: Food.Pizza,
-        clothes: Clothes.Glasses
+        clothes: Clothes.Glasses,
+        gameAttributes: GameAttributes
     },
     {
         name: 'Bruce',
