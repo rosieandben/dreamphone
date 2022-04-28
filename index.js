@@ -6,6 +6,9 @@ runStartup();
 let count = 0;
 
 $('.modal-exit').on('click', function() {
+  const video = $('#dream-video').get(0);
+  video.pause();
+  video.currentTime = 0;
   $('.modal').toggleClass('open');
 });
 
@@ -24,16 +27,12 @@ $(".digit").on('click', function() {
   }
 });
 
-$('.fa-long-arrow-left').on('click', function() {
-  $('#output span:last-child').remove();
-  count--;
-});
-
 const dial = () => {
   setTimeout(() => {
     $('.modal').toggleClass('open');
+    $('#dream-video').get(0).play();
     const dialledBoy = boys.find(x => x.number === $('#output').text());
-    $('#modal-header').text(dialledBoy.name);
+    $('#dream-answer').text(dialledBoy.name);
     $('#output').text('');
   }, 200)
 } 
