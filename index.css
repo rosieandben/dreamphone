@@ -12,7 +12,7 @@
   }
 
   .row {
-    margin: 15% 28%;
+    margin: 15% 18%;
     width: 280px;
     clear: both;
     text-align: center;
@@ -23,7 +23,7 @@
     float: left;
     padding: 2px 2px;
     margin: 5px;
-    width: 30px;
+    width: 20%;
     font-size: 2rem;
     cursor: pointer;
     color: white;
@@ -75,8 +75,8 @@
 
   .modal {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -93,7 +93,7 @@
   }
   .modal-bg {
     position: absolute;
-    background: teal;
+    background: #b384e5;
     width: 100%;
     height: 100%;
   }
@@ -102,6 +102,7 @@
     background: #fff;
     position: relative;
     padding: 30px;
+    width: 100%
   }
   .modal-close {
     position: absolute;
@@ -114,4 +115,8 @@
     border: 0px;
     font-weight: bold;
     cursor: pointer;
+  }
+
+  #dream-video {
+    max-width: 100%
   }
