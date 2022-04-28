@@ -1,19 +1,20 @@
 import { AnswerAbout, boys } from './models.js';
 
-export const runSetup = () => {
-    const admirer = chooseAdmirer();
-    allocateVideos();
-    generateAnswers();
+export const runStartup = () => {
+    const startupBoys = JSON.parse(JSON.stringify(boys));
+    const admirer = chooseAdmirer(startupBoys);
+    allocateVideos(startupBoys);
+    generateAnswers(admirer);
 }
 
-const chooseAdmirer = () => {
-    const randomIndex = Math.floor(Math.random() * boys.length);
-    boys[randomIndex].gameAttributes.isAdmirer = true;
-    return boys[randomIndex];
+const chooseAdmirer = (startupBoys) => {
+    const randomIndex = Math.floor(Math.random() * startupBoys.length);
+    startupBoys[randomIndex].gameAttributes.isAdmirer = true;
+    return startupBoys[randomIndex];
 }
 
-const allocateVideos = () => {
-    for (const boy of boys) {
+const allocateVideos = (startupBoys) => {
+    for (const boy of startupBoys) {
         switch (boy.answerAbout) {
             case AnswerAbout.Location:
                 break;
@@ -28,4 +29,8 @@ const allocateVideos = () => {
                 break;
         }
     }
+}
+
+const generateAnswers = (admirer) => {
+
 }

@@ -1,4 +1,7 @@
 import { boys } from './models.js';
+import { runStartup } from './startup.js';
+
+runStartup();
 
 let count = 0;
 
