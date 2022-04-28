@@ -1,6 +1,7 @@
   body {
     width: 100vw;
     height: 100vh;
+    background-image: url(resources/90s-background.jpg);
   }  
   
   .header {
@@ -11,7 +12,7 @@
   }
 
   .row {
-    margin: 0 auto;
+    margin: 15% 28%;
     width: 280px;
     clear: both;
     text-align: center;
@@ -20,7 +21,8 @@
   
   .digit {
     float: left;
-    padding: 10px 30px;
+    padding: 2px 2px;
+    margin: 5px;
     width: 30px;
     font-size: 2rem;
     cursor: pointer;
@@ -35,11 +37,11 @@
   
   .container {
     background-color: rgb(230, 120, 185);
-    border-radius: 5%;
+    border-radius: 15%;
     width: 320px;
     padding: 20px;
-    margin: 30px auto;
-    height: 420px;
+    margin: 20% auto;
+    height: 50%;
     text-align: center;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
