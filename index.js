@@ -38,7 +38,7 @@ const dial = () => {
 		const dialledBoy = startupBoys.find(
 			(x) => x.number === $('#output').text()
 		);
-    $('#dream-answer').text(dialledBoy.name);
+    $('#dream-answer').html(dialledBoy.gameAttributes.answerToReveal);
 		$('#dream-video')
 			.find('source')
 			.attr('src', dialledBoy.gameAttributes.allocatedVideo);

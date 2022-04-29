@@ -1,11 +1,10 @@
-import { AnswerAbout, boys } from './models.js';
+import { AnswerAbout, Location, Sport, Food, Clothes, boys } from './models.js';
 
 const startupBoys = JSON.parse(JSON.stringify(boys));
 
 export const runStartup = () => {
     const admirer = chooseAdmirer(startupBoys);
-    allocateVideos(startupBoys);
-    generateAnswers(admirer);
+    allocateVideosAndAnswers(startupBoys, admirer);
 }
 
 const chooseAdmirer = (startupBoys) => {
@@ -18,35 +17,94 @@ const shuffleCollection = (collection) => {
     return collection.sort(() => Math.random() - 0.5);
 }
 
-const allocateVideos = (startupBoys) => {
-    const locationVideos = shuffleCollection(['resources/video/Location/Lindsey.mp4']);
-    const sportVideos = shuffleCollection(['resources/video/Sport/Lindsey.mp4']);
-    const foodVideos = shuffleCollection(['Lindsey.mp4']);
-    const clothesVideos = shuffleCollection([]);
+const generateAnswers = (answerType, admirerAnswer) => {
+    const answers = [];
+    for (const type of Object.keys(answerType)) {
+        if (type != admirerAnswer) {
+            answers.push(type);
+        }
+    }
+    return answers;
+}
+
+const allocateVideosAndAnswers = (startupBoys, admirer) => {
+    // TODO: Having to manually maintain list of videos (can use fs locally to parse folders) because fs won't run in browser
+    const locationVideos = shuffleCollection(
+        ['resources/video/Location/Lindsey.mp4']
+    );
+    const sportVideos = shuffleCollection(
+        ['resources/video/Sport/Lindsey.mp4']
+    );
+    const foodVideos = shuffleCollection(
+        ['resources/video/Food/Lindsey.mp4']
+    );
+    const clothesVideos = shuffleCollection(
+        []
+    );
+    const notTellingVideos = shuffleCollection(
+        ['resources/video/NotTelling/Lindsey.mp4']
+    );
+
+    const locationAnswers = shuffleCollection(
+        generateAnswers(Location, admirer.location)
+    );
+    const sportAnswers = shuffleCollection(
+        generateAnswers(Sport, admirer.sport
+    ));
+    const foodAnswers = shuffleCollection(
+        generateAnswers(Food, admirer.food)
+    );
+    const clothesAnswers = shuffleCollection(
+        generateAnswers(Clothes, admirer.clothes)
+    );
 
     for (const boy of startupBoys) {
         switch (boy.answerAbout) {
             case AnswerAbout.Location:
-                boy.gameAttributes.allocatedVideo = locationVideos.pop();
+                const locationAnswer = locationAnswers.pop();
+                if (locationAnswer) {
+                    boy.gameAttributes.allocatedVideo = locationVideos.pop();
+                    boy.gameAttributes.answerToReveal = `He's not at the <b>${locationAnswer}</b>`;
+                } else {
+                    // TODO: may end up with the same person 'not telling' as giving another answer
+                    boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
+                }
                 break;
 
             case AnswerAbout.Sport:
-                boy.gameAttributes.allocatedVideo = sportVideos.pop();
+                const sportAnswer = sportAnswers.pop();
+                if (sportAnswer) {
+                    boy.gameAttributes.allocatedVideo = sportVideos.pop();
+                    boy.gameAttributes.answerToReveal = `But not <b>${sportAnswer}</b>`;
+                } else {
+                    // TODO: may end up with the same person 'not telling' as giving another answer
+                    boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
+                }
                 break;
 
             case AnswerAbout.Food:
-                boy.gameAttributes.allocatedVideo = foodVideos.pop();
+                const foodAnswer = foodAnswers.pop();
+                if (foodAnswer) {
+                    boy.gameAttributes.allocatedVideo = foodVideos.pop();
+                    boy.gameAttributes.answerToReveal = `Except <b>${foodAnswer}</b>`;
+                } else {
+                    // TODO: may end up with the same person 'not telling' as giving another answer
+                    boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
+                }
                 break;
 
             case AnswerAbout.Clothes:
-                boy.gameAttributes.allocatedVideo = clothesVideos.pop();
+                const clothesAnswer = clothesAnswers.pop();
+                if (clothesAnswer) {
+                    boy.gameAttributes.allocatedVideo = clothesVideos.pop();
+                    boy.gameAttributes.answerToReveal = `He's not wearing <b>${clothesAnswer}</b>`;
+                } else {
+                    // TODO: may end up with the same person 'not telling' as giving another answer
+                    boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
+                }
                 break;
         }
     }
-}
-
-const generateAnswers = (admirer) => {
-
 }
 
 export { startupBoys }

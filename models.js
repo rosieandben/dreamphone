@@ -5,7 +5,7 @@ export const AnswerAbout = {
     Clothes: 'Clothes'
 }
 
-const Sport = {
+export const Sport = {
     Football: 'Football',
     Skateboarding: 'Skateboarding',
     Volleyball: 'Volleyball',
@@ -14,7 +14,7 @@ const Sport = {
     Tennis: 'Tennis'
 }
 
-const Food = {
+export const Food = {
     Biscuits: 'Biscuits',
     IceCream: 'Ice cream',
     HotDogs: 'Hot dogs',
@@ -23,7 +23,7 @@ const Food = {
     Popcorn: 'Popcorn'
 }
 
-const Location = {
+export const Location = {
     Mall: 'Mall',
     SnackShop: 'Snack Shop',
     Movies: 'Movies',
@@ -32,7 +32,7 @@ const Location = {
     Gym: 'Gym'
 }
 
-const Clothes = {
+export const Clothes = {
     Jeans: 'Jeans',
     Tie: 'Tie',
     Jacket: 'Jacket',
