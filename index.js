@@ -29,9 +29,11 @@ $(".digit").on('click', function() {
 
 const dial = () => {
   setTimeout(() => {
+    const dialledBoy = boys.find(x => x.number === $('#output').text());
+    $('#dream-video').find('source').attr('src', dialledBoy.gameAttributes.allocatedVideo);
+
     $('.modal').toggleClass('open');
     $('#dream-video').get(0).play();
-    const dialledBoy = boys.find(x => x.number === $('#output').text());
     $('#dream-answer').text(dialledBoy.name);
     $('#output').text('');
   }, 200)

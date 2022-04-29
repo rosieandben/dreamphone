@@ -1,5 +1,5 @@
 import { AnswerAbout, boys } from './models.js';
-import fs from 'fs';
+import * as fs from 'fs';
 
 export const runStartup = () => {
     const startupBoys = JSON.parse(JSON.stringify(boys));
