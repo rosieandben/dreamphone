@@ -27,8 +27,9 @@ $('.digit').on('click', function () {
 });
 
 $('#dream-video').on('ended', function () {
-  $('#dream-video').fadeOut(1000);
-  $('#dream-answer').fadeIn(5000);
+  $('#dream-video').fadeOut(1000, () => {
+	$('#dream-answer').fadeIn(1000);
+  });
 });
 
 const dial = () => {

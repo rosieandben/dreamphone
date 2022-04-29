@@ -64,7 +64,7 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
                 const locationAnswer = locationAnswers.pop();
                 if (locationAnswer) {
                     boy.gameAttributes.allocatedVideo = locationVideos.pop();
-                    boy.gameAttributes.answerToReveal = `He's not at the <b>${locationAnswer}</b>`;
+                    boy.gameAttributes.answerToReveal = `He's not at the <b>${locationAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
                     boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
@@ -75,7 +75,7 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
                 const sportAnswer = sportAnswers.pop();
                 if (sportAnswer) {
                     boy.gameAttributes.allocatedVideo = sportVideos.pop();
-                    boy.gameAttributes.answerToReveal = `But not <b>${sportAnswer}</b>`;
+                    boy.gameAttributes.answerToReveal = `But not <b>${sportAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
                     boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
@@ -86,7 +86,7 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
                 const foodAnswer = foodAnswers.pop();
                 if (foodAnswer) {
                     boy.gameAttributes.allocatedVideo = foodVideos.pop();
-                    boy.gameAttributes.answerToReveal = `Except <b>${foodAnswer}</b>`;
+                    boy.gameAttributes.answerToReveal = `Except <b>${foodAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
                     boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
@@ -97,7 +97,7 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
                 const clothesAnswer = clothesAnswers.pop();
                 if (clothesAnswer) {
                     boy.gameAttributes.allocatedVideo = clothesVideos.pop();
-                    boy.gameAttributes.answerToReveal = `He's not wearing <b>${clothesAnswer}</b>`;
+                    boy.gameAttributes.answerToReveal = `He's not wearing <b>${clothesAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
                     boy.gameAttributes.allocatedVideo = notTellingVideos.pop();
