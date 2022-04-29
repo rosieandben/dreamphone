@@ -1,8 +1,8 @@
 import { AnswerAbout, boys } from './models.js';
-import * as fs from 'fs';
+
+const startupBoys = JSON.parse(JSON.stringify(boys));
 
 export const runStartup = () => {
-    const startupBoys = JSON.parse(JSON.stringify(boys));
     const admirer = chooseAdmirer(startupBoys);
     allocateVideos(startupBoys);
     generateAnswers(admirer);
@@ -19,10 +19,10 @@ const shuffleCollection = (collection) => {
 }
 
 const allocateVideos = (startupBoys) => {
-    const locationVideos = shuffleCollection(fs.readdirSync('./resources/video/Location'));
-    const sportVideos = shuffleCollection(fs.readdirSync('./resources/video/Sport'));
-    const foodVideos = shuffleCollection(fs.readdirSync('./resources/video/Food'));
-    const clothesVideos = shuffleCollection(fs.readdirSync('./resources/video/Clothes'));
+    const locationVideos = shuffleCollection(['resources/video/Location/Lindsey.mp4']);
+    const sportVideos = shuffleCollection(['resources/video/Sport/Lindsey.mp4']);
+    const foodVideos = shuffleCollection(['Lindsey.mp4']);
+    const clothesVideos = shuffleCollection([]);
 
     for (const boy of startupBoys) {
         switch (boy.answerAbout) {
@@ -48,3 +48,5 @@ const allocateVideos = (startupBoys) => {
 const generateAnswers = (admirer) => {
 
 }
+
+export { startupBoys }
