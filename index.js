@@ -45,17 +45,22 @@ $('#dream-video').on('ended', function () {
   });
 });
 
-const displayModalVideoAndMessage = (message, video) => {
+const displayModalVideoAndMessage = (dialledBoy, message, video) => {
 	if (!dialledBoy) {
 		$('#dream-answer').html('Sorry, wrong number, dial again');
 		$('#dream-answer').show();
 		$('#dream-video').hide();
 	} else {
 		$('#dream-answer').html(message);
-		$('#dream-video')
-			.find('source')
-			.attr('src', video);
-		$('#dream-video').get(0).load();
+		if (video) {
+			$('#dream-video')
+				.find('source')
+				.attr('src', video);
+			$('#dream-video').get(0).load();
+		} else {
+			$('#dream-video').hide();
+			$('#dream-answer').show();
+		}
 	}
 
 	$('.modal').toggleClass('open');
@@ -68,6 +73,7 @@ const dial = (dialledBoy) => {
 	$('#dream-video').show();
 	setTimeout(() => {
 		displayModalVideoAndMessage(
+			dialledBoy,
 			dialledBoy.gameAttributes.answerToReveal,
 			dialledBoy.gameAttributes.allocatedVideo
 		);
@@ -79,6 +85,7 @@ const guess = (dialledBoy) => {
 	$('#dream-video').show();
 	setTimeout(() => {
 		displayModalVideoAndMessage(
+			dialledBoy,
 			'<b>Congratulations!</b>',
 			dialledBoy.gameAttributes.correctAnswerVideo
 		);
