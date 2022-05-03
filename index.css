@@ -12,8 +12,8 @@
   }
 
   .row {
-    margin: 15% 18%;
-    width: 280px;
+    margin: 15% 10%;
+    width: 100%;
     clear: both;
     text-align: center;
     font-family: 'Exo';
@@ -21,10 +21,11 @@
   
   .digit {
     float: left;
-    padding: 2px 2px;
+    padding: 15px 0px;
     margin: 5px;
-    width: 20%;
-    font-size: 2rem;
+    width: 25%;
+    height: 50%;
+    font-size: 3rem;
     cursor: pointer;
     color: white;
     background-color: black;
@@ -38,10 +39,9 @@
   .container {
     background-color: rgb(230, 120, 185);
     border-radius: 15%;
-    width: 320px;
-    padding: 20px;
+    width: 50%;
     margin: 20% auto;
-    height: 50%;
+    height: 70%;
     text-align: center;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
