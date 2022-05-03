@@ -86,8 +86,8 @@ const guess = (dialledBoy) => {
 	setTimeout(() => {
 		displayModalVideoAndMessage(
 			dialledBoy,
-			'<b>Congratulations!</b>',
-			dialledBoy.gameAttributes.correctAnswerVideo
+			dialledBoy.gameAttributes.isAdmirer ? '<b>Congratulations!</b>' : '<b>Better luck next time!</b>',
+			dialledBoy.gameAttributes.isAdmirer ? dialledBoy.gameAttributes.correctAnswerVideo : dialledBoy.gameAttributes.incorrectAnswerVideo
 		);
 	}, 200);
 };
