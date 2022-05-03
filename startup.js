@@ -39,7 +39,7 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
         ['resources/video/Food/Lindsey.mp4']
     );
     const clothesVideos = shuffleCollection(
-        []
+        ['resources/video/Clothes/Lindsey.mp4']
     );
     const notTellingVideos = shuffleCollection(
         ['resources/video/NotTelling/Lindsey.mp4']
