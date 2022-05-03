@@ -1,12 +1,5 @@
 import { runStartup, startupBoys } from './startup.js';
 
-// disable zoom on mobile
-document.addEventListener('touchmove', e => {
-	if (e.touches.length > 1) {  
-		e.preventDefault();
-	}
-}, {passive: false});
-
 runStartup();
 
 let count = 0;
