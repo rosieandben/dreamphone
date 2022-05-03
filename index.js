@@ -46,21 +46,15 @@ $('#dream-video').on('ended', function () {
 });
 
 const displayModalVideoAndMessage = (dialledBoy, message, video) => {
-	if (!dialledBoy) {
-		$('#dream-answer').html('Sorry, wrong number, dial again');
-		$('#dream-answer').show();
-		$('#dream-video').hide();
+	$('#dream-answer').html(message);
+	if (video) {
+		$('#dream-video')
+			.find('source')
+			.attr('src', video);
+		$('#dream-video').get(0).load();
 	} else {
-		$('#dream-answer').html(message);
-		if (video) {
-			$('#dream-video')
-				.find('source')
-				.attr('src', video);
-			$('#dream-video').get(0).load();
-		} else {
-			$('#dream-video').hide();
-			$('#dream-answer').show();
-		}
+		$('#dream-video').hide();
+		$('#dream-answer').show();
 	}
 
 	$('.modal').toggleClass('open');
@@ -68,15 +62,27 @@ const displayModalVideoAndMessage = (dialledBoy, message, video) => {
 	$('#output').text('');
 }
 
+const displayWrongNumberMessage = () => {
+	$('#dream-answer').html('Sorry, wrong number, dial again');
+	$('#dream-answer').show();
+	$('#dream-video').hide();
+	$('.modal').toggleClass('open');
+	$('#output').text('');
+}
+
 const dial = (dialledBoy) => {
 	$('#dream-answer').hide();
 	$('#dream-video').show();
 	setTimeout(() => {
-		displayModalVideoAndMessage(
-			dialledBoy,
-			dialledBoy.gameAttributes.answerToReveal,
-			dialledBoy.gameAttributes.allocatedVideo
-		);
+		if (!dialledBoy) {
+			displayWrongNumberMessage();
+		} else {
+			displayModalVideoAndMessage(
+				dialledBoy,
+				dialledBoy.gameAttributes.answerToReveal,
+				dialledBoy.gameAttributes.allocatedVideo
+			);
+		}
 	}, 200);
 };
 
@@ -84,10 +90,14 @@ const guess = (dialledBoy) => {
 	$('#dream-answer').hide();
 	$('#dream-video').show();
 	setTimeout(() => {
-		displayModalVideoAndMessage(
-			dialledBoy,
-			dialledBoy.gameAttributes.isAdmirer ? '<b>Congratulations!</b>' : '<b>Better luck next time!</b>',
-			dialledBoy.gameAttributes.isAdmirer ? dialledBoy.gameAttributes.correctAnswerVideo : dialledBoy.gameAttributes.incorrectAnswerVideo
-		);
+		if (!dialledBoy) {
+			displayWrongNumberMessage();
+		} else {
+			displayModalVideoAndMessage(
+				dialledBoy,
+				dialledBoy.gameAttributes.isAdmirer ? '<b>Congratulations!</b>' : '<b>Better luck next time!</b>',
+				dialledBoy.gameAttributes.isAdmirer ? dialledBoy.gameAttributes.correctAnswerVideo : dialledBoy.gameAttributes.incorrectAnswerVideo
+			);
+		}
 	}, 200);
 };
