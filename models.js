@@ -92,7 +92,7 @@ export const boys = [
     },
     {
         name: 'James',
-        number: '555-1233',
+        number: '555-2588',
         answerAbout: AnswerAbout.Location,
         location: Location.SnackShop,
         sport: null,

@@ -64,7 +64,7 @@ const displayModalVideoAndMessage = (dialledBoy, message, video) => {
 	}
 
 	$('.modal').toggleClass('open');
-	if (dialledBoy) $('#dream-video').get(0).play();
+	if (dialledBoy && video) $('#dream-video').get(0).play();
 	$('#output').text('');
 }
 
