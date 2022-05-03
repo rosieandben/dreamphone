@@ -29,7 +29,10 @@ $('.digit').on('click', function () {
 		count++;
 	} else {
 		count = 0;
-		dial();
+		const dialledBoy = startupBoys.find(
+			(x) => x.number === $('#output').text()
+		);
+		dial(dialledBoy);
 	}
 });
 
@@ -39,21 +42,24 @@ $('#dream-video').on('ended', function () {
   });
 });
 
-const dial = () => {
-  $('#dream-answer').hide();
-  $('#dream-video').show();
+const dial = (dialledBoy) => {
+	$('#dream-answer').hide();
+	$('#dream-video').show();
 	setTimeout(() => {
-		const dialledBoy = startupBoys.find(
-			(x) => x.number === $('#output').text()
-		);
-    $('#dream-answer').html(dialledBoy.gameAttributes.answerToReveal);
-		$('#dream-video')
-			.find('source')
-			.attr('src', dialledBoy.gameAttributes.allocatedVideo);
-		$('#dream-video').get(0).load();
+		if (!dialledBoy) {
+			$('#dream-answer').html('Sorry, wrong number, dial again');
+			$('#dream-answer').show();
+			$('#dream-video').hide();
+		} else {
+			$('#dream-answer').html(dialledBoy.gameAttributes.answerToReveal);
+			$('#dream-video')
+				.find('source')
+				.attr('src', dialledBoy.gameAttributes.allocatedVideo);
+			$('#dream-video').get(0).load();
+		}
 
 		$('.modal').toggleClass('open');
-		$('#dream-video').get(0).play();
+		if (dialledBoy) $('#dream-video').get(0).play();
 		$('#output').text('');
 	}, 200);
 };
