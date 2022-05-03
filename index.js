@@ -18,14 +18,20 @@ $('.digit').on('click', function () {
 	}
 
 	$('#output').append('<span>' + num.trim() + '</span>');
-	if (count < 6) {
-		count++;
-	} else {
+	if (count === 6 && !num.includes('#')) {
 		count = 0;
 		const dialledBoy = startupBoys.find(
 			(x) => x.number === $('#output').text()
 		);
 		dial(dialledBoy);
+	} else if (count === 7 && num.includes('#')) {
+		count = 0;
+		const dialledBoy = startupBoys.find(
+			(x) => x.number === $('#output').text().replace('#', '')
+		)
+		guess(dialledBoy);
+	} else {
+		count++;
 	}
 });
 
@@ -45,6 +51,28 @@ const dial = (dialledBoy) => {
 			$('#dream-video').hide();
 		} else {
 			$('#dream-answer').html(dialledBoy.gameAttributes.answerToReveal);
+			$('#dream-video')
+				.find('source')
+				.attr('src', dialledBoy.gameAttributes.allocatedVideo);
+			$('#dream-video').get(0).load();
+		}
+
+		$('.modal').toggleClass('open');
+		if (dialledBoy) $('#dream-video').get(0).play();
+		$('#output').text('');
+	}, 200);
+};
+
+const guess = (dialledBoy) => {
+	$('#dream-answer').hide();
+	$('#dream-video').show();
+	setTimeout(() => {
+		if (!dialledBoy) {
+			$('#dream-answer').html('Sorry, wrong number, dial again');
+			$('#dream-answer').show();
+			$('#dream-video').hide();
+		} else {
+			$('#dream-answer').html('<b>Congratulations!</b>');
 			$('#dream-video')
 				.find('source')
 				.attr('src', dialledBoy.gameAttributes.allocatedVideo);

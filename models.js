@@ -43,6 +43,8 @@ export const Clothes = {
 
 const GameAttributes = {
     isAdmirer: false,
+    correctAnswerVideo: null,
+    incorrectAnswerVideo: null,
     allocatedVideo: null,
     answerToReveal: null
 }

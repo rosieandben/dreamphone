@@ -27,6 +27,11 @@ const generateAnswers = (answerType, admirerAnswer) => {
     return answers;
 }
 
+const getVideoFileFromPath = (path) => {
+    const lastSlashIndex = path.lastIndexOf('/');
+    return path.substr(lastSlashIndex + 1)
+}
+
 const allocateVideosAndAnswers = (startupBoys, admirer) => {
     // TODO: Having to manually maintain list of videos (can use fs locally to parse folders) because fs won't run in browser
     const locationVideos = shuffleCollection(
@@ -63,7 +68,13 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
             case AnswerAbout.Location:
                 const locationAnswer = locationAnswers.pop();
                 if (locationAnswer) {
-                    boy.gameAttributes.allocatedVideo = locationVideos.pop();
+                    const locationVideo = locationVideos.pop();
+                    if (locationVideo) {
+                        const videoFile = getVideoFileFromPath(locationVideo);
+                        boy.gameAttributes.correctAnswerVideo = `resources/video/CorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.incorrectAnswerVideo = `resources/video/IncorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.allocatedVideo = locationVideo;
+                    }
                     boy.gameAttributes.answerToReveal = `He's not at the <b>${locationAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
@@ -74,7 +85,13 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
             case AnswerAbout.Sport:
                 const sportAnswer = sportAnswers.pop();
                 if (sportAnswer) {
-                    boy.gameAttributes.allocatedVideo = sportVideos.pop();
+                    const sportVideo = sportVideos.pop();
+                    if (sportVideo) {
+                        const videoFile = getVideoFileFromPath(sportVideo);
+                        boy.gameAttributes.correctAnswerVideo = `resources/video/CorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.incorrectAnswerVideo = `resources/video/IncorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.allocatedVideo = sportVideo;
+                    }
                     boy.gameAttributes.answerToReveal = `But not <b>${sportAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
@@ -85,7 +102,13 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
             case AnswerAbout.Food:
                 const foodAnswer = foodAnswers.pop();
                 if (foodAnswer) {
-                    boy.gameAttributes.allocatedVideo = foodVideos.pop();
+                    const foodVideo = foodVideos.pop();
+                    if (foodVideo) {
+                        const videoFile = getVideoFileFromPath(foodVideo);
+                        boy.gameAttributes.correctAnswerVideo = `resources/video/CorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.incorrectAnswerVideo = `resources/video/IncorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.allocatedVideo = foodVideo;
+                    }
                     boy.gameAttributes.answerToReveal = `Except <b>${foodAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
@@ -96,7 +119,13 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
             case AnswerAbout.Clothes:
                 const clothesAnswer = clothesAnswers.pop();
                 if (clothesAnswer) {
-                    boy.gameAttributes.allocatedVideo = clothesVideos.pop();
+                    const clothesVideo = clothesVideos.pop();
+                    if (clothesVideo) {
+                        const videoFile = getVideoFileFromPath(clothesVideo);
+                        boy.gameAttributes.correctAnswerVideo = `resources/video/CorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.incorrectAnswerVideo = `resources/video/IncorrectAnswer/${videoFile}`;
+                        boy.gameAttributes.allocatedVideo = clothesVideo;
+                    }
                     boy.gameAttributes.answerToReveal = `He's not wearing <b>${clothesAnswer.toUpperCase()}</b>`;
                 } else {
                     // TODO: may end up with the same person 'not telling' as giving another answer
