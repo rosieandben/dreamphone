@@ -63,7 +63,7 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
 }
 
 const constructVideoPaths = (answerAboutOption) => {
-    const videoSubjects = ['Chrystal', 'Dad', 'Katy', 'Lindsey', 'Megan', 'Mum'];
+    const videoSubjects = ['Chrystal', 'Dad', 'Katy', 'Lindsey', 'Megan', 'Mum', 'Sophie'];
 
     const filePaths = [];
     for (const subject of videoSubjects) {
