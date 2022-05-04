@@ -62,19 +62,28 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
     }
 }
 
+const constructVideoPaths = (answerAboutOption) => {
+    const videoSubjects = ['Chrystal', 'Dad', 'Katy', 'Lindsey', 'Megan', 'Mum'];
+
+    const filePaths = [];
+    for (const subject of videoSubjects) {
+        filePaths.push(`resources/video/${answerAboutOption}/${subject}.mp4`);
+    }
+    return filePaths;
+}
+
 const allocateVideosAndAnswers = (startupBoys, admirer) => {
-    // TODO: Having to manually maintain list of videos (can use fs locally to parse folders) because fs won't run in browser
     const locationVideos = shuffleCollection(
-        ['resources/video/Location/Lindsey.mp4']
+        constructVideoPaths(AnswerAbout.Location)
     );
     const sportVideos = shuffleCollection(
-        ['resources/video/Sport/Lindsey.mp4']
+        constructVideoPaths(AnswerAbout.Sport)
     );
     const foodVideos = shuffleCollection(
-        ['resources/video/Food/Lindsey.mp4']
+        constructVideoPaths(AnswerAbout.Food)
     );
     const clothesVideos = shuffleCollection(
-        ['resources/video/Clothes/Lindsey.mp4']
+        constructVideoPaths(AnswerAbout.Clothes)
     );
 
     const locationAnswers = shuffleCollection(
