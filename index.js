@@ -1,3 +1,4 @@
+import { generateHeart } from './hearts.js';
 import { runStartup, startupBoys } from './startup.js';
 
 runStartup();
@@ -39,9 +40,23 @@ $('.digit').on('click', function () {
 	}
 });
 
+const generateHeartAtCoordinates = (xPoint, yPoint) => {
+	const start = 1 - Math.round(Math.random()) * 2;
+	const scale = Math.random() * Math.random() * 0.8 + 0.2;
+	const bound = 30 + Math.random() * 20;
+	generateHeart(xPoint, yPoint, bound, start, scale);
+}
+
 $('#dream-video').on('ended', function () {
   $('#dream-video').fadeOut(1000, () => {
 	$('#dream-answer').fadeIn(1000);
+	if ($('#dream-answer').text() === 'Congratulations!') {
+		setTimeout(() => {
+			for (let i = 0; i < 1000; i+=10) {
+				generateHeartAtCoordinates(i, 950);
+			}
+		}, 1000);
+	}
   });
 });
 
