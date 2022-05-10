@@ -46,6 +46,9 @@ $('#dream-video').on('ended', function () {
 });
 
 const displayModalVideoAndMessage = (dialledBoy, message, video) => {
+	$('.modal-bg').css('background-image', `url(resources/images/${dialledBoy.name}.jpeg)`);
+	$('.modal-bg').css('background-size', '20%');
+
 	$('#dream-answer').html(message);
 	if (video) {
 		$('#dream-video')
@@ -63,6 +66,9 @@ const displayModalVideoAndMessage = (dialledBoy, message, video) => {
 }
 
 const displayWrongNumberMessage = () => {
+	$('.modal-bg').css('background-image', 'url(resources/images/Booklet.jpeg)');
+	$('.modal-bg').css('background-size', '100%');
+
 	$('#dream-answer').html('Sorry, wrong number, dial again');
 	$('#dream-answer').show();
 	$('#dream-video').hide();
