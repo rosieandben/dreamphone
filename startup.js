@@ -47,11 +47,13 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
             setVideo(video, boy);
         }
         boy.gameAttributes.answerToReveal = `${answerPhrase} <b>${answer.toUpperCase()}</b>`;
+        return video ? getVideoFileFromPath(video) : null;
     } else {
         // remove a normal answer video from the collection
         const normalVideo = videos.pop();
+        let videoFile = null;
         if (normalVideo) {
-            const videoFile = getVideoFileFromPath(normalVideo);
+            videoFile = getVideoFileFromPath(normalVideo)
             // use that person's video from the not telling collection
             const notTellingVideo = `resources/video/NotTelling/${videoFile}`;
             if (notTellingVideo) {
@@ -59,6 +61,7 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
             }
         }
         boy.gameAttributes.answerToReveal = `<b>Gotcha!</b>`;
+        return videoFile;
     }
 }
 
@@ -70,6 +73,11 @@ const constructVideoPaths = (answerAboutOption) => {
         filePaths.push(`resources/video/${answerAboutOption}/${subject}.mp4`);
     }
     return filePaths;
+}
+
+const removeVideoFromCollection = (videos, answerAbout, videoToRemove) => {
+    const index = videos.indexOf(`resources/video/${answerAbout}/${videoToRemove}`);
+    videos.splice(index, 1);
 }
 
 const allocateVideosAndAnswers = (startupBoys, admirer) => {
@@ -103,19 +111,91 @@ const allocateVideosAndAnswers = (startupBoys, admirer) => {
     for (const boy of startupBoys) {
         switch (boy.answerAbout) {
             case AnswerAbout.Location:
-                setVideosAndAnswers(locationAnswers, locationVideos, boy, "He's not at the");
+                const locationVideoToRemove = setVideosAndAnswers(locationAnswers, locationVideos, boy, "He's not at the");
+                if (!locationVideoToRemove) {
+                    break;
+                }
+                for (const answerAbout of Object.keys(AnswerAbout)) {
+                    switch (answerAbout) {
+                        case AnswerAbout.Sport:
+                            removeVideoFromCollection(sportVideos, answerAbout, locationVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Food:
+                            removeVideoFromCollection(foodVideos, answerAbout, locationVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Clothes:
+                            removeVideoFromCollection(clothesVideos, answerAbout, locationVideoToRemove);
+                            break;
+                    }
+                }
                 break;
 
             case AnswerAbout.Sport:
-                setVideosAndAnswers(sportAnswers, sportVideos, boy, 'But not');
+                const sportVideoToRemove = setVideosAndAnswers(sportAnswers, sportVideos, boy, 'But not');
+                if (!sportVideoToRemove) {
+                    break;
+                }
+                for (const answerAbout of Object.keys(AnswerAbout)) {
+                    switch (answerAbout) {
+                        case AnswerAbout.Location:
+                            removeVideoFromCollection(locationVideos, answerAbout, sportVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Food:
+                            removeVideoFromCollection(foodVideos, answerAbout, sportVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Clothes:
+                            removeVideoFromCollection(clothesVideos, answerAbout, sportVideoToRemove);
+                            break;
+                    }
+                }            
                 break;
 
             case AnswerAbout.Food:
-                setVideosAndAnswers(foodAnswers, foodVideos, boy, 'Except');
+                const foodVideoToRemove = setVideosAndAnswers(foodAnswers, foodVideos, boy, 'Except');
+                if (!foodVideoToRemove) {
+                    break;
+                }
+                for (const answerAbout of Object.keys(AnswerAbout)) {
+                    switch (answerAbout) {
+                        case AnswerAbout.Location:
+                            removeVideoFromCollection(locationVideos, answerAbout, foodVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Sport:
+                            removeVideoFromCollection(sportVideos, answerAbout, foodVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Clothes:
+                            removeVideoFromCollection(clothesVideos, answerAbout, foodVideoToRemove);
+                            break;
+                    }
+                }     
                 break;
 
             case AnswerAbout.Clothes:
-                setVideosAndAnswers(clothesAnswers, clothesVideos, boy, "He's not wearing");
+                const clothesVideoToRemove = setVideosAndAnswers(clothesAnswers, clothesVideos, boy, "He's not wearing");
+                if (!clothesVideoToRemove) {
+                    break;
+                }                
+                for (const answerAbout of Object.keys(AnswerAbout)) {
+                    switch (answerAbout) {
+                        case AnswerAbout.Location:
+                            removeVideoFromCollection(locationVideos, answerAbout, clothesVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Sport:
+                            removeVideoFromCollection(sportVideos, answerAbout, clothesVideoToRemove);
+                            break;
+
+                        case AnswerAbout.Food:
+                            removeVideoFromCollection(foodVideos, answerAbout, clothesVideoToRemove);
+                            break;
+                    }
+                }                
                 break;
         }
     }
