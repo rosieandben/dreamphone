@@ -66,11 +66,12 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
 }
 
 const constructVideoPaths = (answerAboutOption) => {
-    const videoSubjects = ['Chrystal', 'Dad', 'Katy', 'Lindsey', 'Megan', 'Mum', 'Sophie'];
+    const videoFiles = ['Ben.mp4', 'Chrystal.mp4', 'Dad.mp4', 'Katy.mp4', 'Lindsey.mp4', 'Megan.mp4', 'Mum.mp4', 'Sophie.mp4',
+     '1.MOV'];
 
     const filePaths = [];
-    for (const subject of videoSubjects) {
-        filePaths.push(`resources/video/${answerAboutOption}/${subject}.mp4`);
+    for (const file of videoFiles) {
+        filePaths.push(`resources/video/${answerAboutOption}/${file}`);
     }
     return filePaths;
 }
