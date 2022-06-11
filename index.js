@@ -13,6 +13,7 @@ if (admirerIndex > -1) {
 
 let turn = 0;
 let digitCount = 0;
+let disableIncomingCall = false;
 
 const setIncomingCall = () => {
 	const incomingCallBoy =
@@ -21,12 +22,13 @@ const setIncomingCall = () => {
 		];
 	const message = `${incomingCallBoy.name} is not into you, sorry!`;
 
-	let audio =  new Audio("resources/ringing.mp3");
+	let audio = new Audio('resources/ringing.mp3');
 	$('.container').toggleClass('ringing');
 	audio.play();
 
 	$('#dream-answer').hide();
 	$('#dream-video').show();
+	disableIncomingCall = true;
 	setTimeout(() => {
 		$('.container').toggleClass('ringing');
 		audio.pause();
@@ -35,10 +37,16 @@ const setIncomingCall = () => {
 			displayModalVideoAndMessage(
 				incomingCallBoy,
 				message,
-				incomingCallBoy.videoUrl
+				incomingCallBoy.videoUrl,
+				true
 			);
 		}, 200);
 	}, 9000);
+
+	const indexOfUsedBoy = incomingCallBoysLocal.findIndex(
+		(boy) => boy === incomingCallBoy
+	);
+	incomingCallBoysLocal.splice(indexOfUsedBoy, 1);
 };
 
 $('.modal-exit').on('click', function () {
@@ -46,7 +54,7 @@ $('.modal-exit').on('click', function () {
 	video.pause();
 	video.currentTime = 0;
 	$('.modal').toggleClass('open');
-	if (turn === 3 || turn === 5 || turn === 8) {
+	if ((turn === 3 || turn === 5 || turn === 8) && !disableIncomingCall) {
 		setIncomingCall();
 	}
 });
@@ -99,12 +107,22 @@ $('#dream-video').on('ended', function () {
 	});
 });
 
-const displayModalVideoAndMessage = (dialledBoy, message, video) => {
-	turn++;
+const displayModalVideoAndMessage = (
+	dialledBoy,
+	message,
+	video,
+	incomingCall
+) => {
+	if (!incomingCall) {
+		disableIncomingCall = false;
+		turn++;
+	}
 
 	$('.modal-bg').css(
 		'background-image',
-		`url(resources/images/${dialledBoy.name}.jpeg)`
+		incomingCall
+			? `url(resources/images/Box-side-girls.jpeg)`
+			: `url(resources/images/${dialledBoy.name}.jpeg)`
 	);
 	$('.modal-bg').css('background-size', '20%');
 
@@ -126,6 +144,7 @@ const displayWrongNumberMessage = () => {
 	$('.modal-bg').css('background-image', 'url(resources/images/Booklet.jpeg)');
 	$('.modal-bg').css('background-size', '100%');
 
+	disableIncomingCall = true;
 	$('#dream-answer').html('Sorry, wrong number, dial again');
 	$('#dream-answer').show();
 	$('#dream-video').hide();
@@ -143,7 +162,8 @@ const dial = (dialledBoy) => {
 			displayModalVideoAndMessage(
 				dialledBoy,
 				dialledBoy.gameAttributes.answerToReveal,
-				dialledBoy.gameAttributes.allocatedVideo
+				dialledBoy.gameAttributes.allocatedVideo,
+				false
 			);
 		}
 	}, 200);
@@ -163,7 +183,8 @@ const guess = (dialledBoy) => {
 					: '<b>Better luck next time!</b>',
 				dialledBoy.gameAttributes.isAdmirer
 					? dialledBoy.gameAttributes.correctAnswerVideo
-					: dialledBoy.gameAttributes.incorrectAnswerVideo
+					: dialledBoy.gameAttributes.incorrectAnswerVideo,
+				false
 			);
 		}
 	}, 200);
