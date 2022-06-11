@@ -1,42 +1,72 @@
 import { generateHeart } from './hearts.js';
 import { runStartup, startupBoys } from './startup.js';
+import { incomingCallBoys } from './models.js';
 
-runStartup();
+const admirer = runStartup();
+const incomingCallBoysLocal = JSON.parse(JSON.stringify(incomingCallBoys));
+const admirerIndex = incomingCallBoysLocal.findIndex(
+	(boy) => boy.name === admirer.name
+);
+if (admirerIndex > -1) {
+	incomingCallBoysLocal.splice(admirerIndex);
+}
 
-let count = 0;
+let turn = 0;
+let digitCount = 0;
+
+const setIncomingCall = () => {
+	const incomingCallBoy =
+		incomingCallBoysLocal[
+			Math.floor(Math.random() * incomingCallBoysLocal.length)
+		];
+	const message = `${incomingCallBoy.name} is not into you, sorry!`;
+
+	$('#dream-answer').hide();
+	$('#dream-video').show();
+	setTimeout(() => {
+		displayModalVideoAndMessage(
+			incomingCallBoy,
+			message,
+			incomingCallBoy.videoUrl
+		);
+	}, 200);
+};
 
 $('.modal-exit').on('click', function () {
 	const video = $('#dream-video').get(0);
 	video.pause();
 	video.currentTime = 0;
 	$('.modal').toggleClass('open');
+	if (turn === 3 || turn === 5 || turn === 8) {
+		setIncomingCall();
+	}
 });
 
 $('.digit').on('click', function () {
-	const dialledNumbers = $('#output').text()
+	const dialledNumbers = $('#output').text();
 	let num = $(this).clone().children().remove().end().text();
-	if (count === 2 && !dialledNumbers.includes('#')) {
+	if (digitCount === 2 && !dialledNumbers.includes('#')) {
 		num += '-';
 	}
-	if (count === 3 && dialledNumbers.includes('#')) {
+	if (digitCount === 3 && dialledNumbers.includes('#')) {
 		num += '-';
 	}
 
 	$('#output').append('<span>' + num.trim() + '</span>');
-	if (count === 6 && !dialledNumbers.includes('#')) {
-		count = 0;
+	if (digitCount === 6 && !dialledNumbers.includes('#')) {
+		digitCount = 0;
 		const dialledBoy = startupBoys.find(
 			(x) => x.number === $('#output').text()
 		);
 		dial(dialledBoy);
-	} else if (count === 7 && dialledNumbers.includes('#')) {
-		count = 0;
+	} else if (digitCount === 7 && dialledNumbers.includes('#')) {
+		digitCount = 0;
 		const dialledBoy = startupBoys.find(
 			(x) => x.number === $('#output').text().replace('#', '')
-		)
+		);
 		guess(dialledBoy);
 	} else {
-		count++;
+		digitCount++;
 	}
 });
 
@@ -45,30 +75,33 @@ const generateHeartAtCoordinates = (xPoint, yPoint) => {
 	const scale = Math.random() * Math.random() * 0.8 + 0.2;
 	const bound = 30 + Math.random() * 20;
 	generateHeart(xPoint, yPoint, bound, start, scale);
-}
+};
 
 $('#dream-video').on('ended', function () {
-  $('#dream-video').fadeOut(1000, () => {
-	$('#dream-answer').fadeIn(1000);
-	if ($('#dream-answer').text() === 'Congratulations!') {
-		setTimeout(() => {
-			for (let i = 0; i < 1000; i+=10) {
-				generateHeartAtCoordinates(i, 950);
-			}
-		}, 1000);
-	}
-  });
+	$('#dream-video').fadeOut(1000, () => {
+		$('#dream-answer').fadeIn(1000);
+		if ($('#dream-answer').text() === 'Congratulations!') {
+			setTimeout(() => {
+				for (let i = 0; i < 1000; i += 10) {
+					generateHeartAtCoordinates(i, 950);
+				}
+			}, 1000);
+		}
+	});
 });
 
 const displayModalVideoAndMessage = (dialledBoy, message, video) => {
-	$('.modal-bg').css('background-image', `url(resources/images/${dialledBoy.name}.jpeg)`);
+	turn++;
+
+	$('.modal-bg').css(
+		'background-image',
+		`url(resources/images/${dialledBoy.name}.jpeg)`
+	);
 	$('.modal-bg').css('background-size', '20%');
 
 	$('#dream-answer').html(message);
 	if (video) {
-		$('#dream-video')
-			.find('source')
-			.attr('src', video);
+		$('#dream-video').find('source').attr('src', video);
 		$('#dream-video').get(0).load();
 	} else {
 		$('#dream-video').hide();
@@ -78,7 +111,7 @@ const displayModalVideoAndMessage = (dialledBoy, message, video) => {
 	$('.modal').toggleClass('open');
 	if (dialledBoy && video) $('#dream-video').get(0).play();
 	$('#output').text('');
-}
+};
 
 const displayWrongNumberMessage = () => {
 	$('.modal-bg').css('background-image', 'url(resources/images/Booklet.jpeg)');
@@ -89,7 +122,7 @@ const displayWrongNumberMessage = () => {
 	$('#dream-video').hide();
 	$('.modal').toggleClass('open');
 	$('#output').text('');
-}
+};
 
 const dial = (dialledBoy) => {
 	$('#dream-answer').hide();
@@ -116,8 +149,12 @@ const guess = (dialledBoy) => {
 		} else {
 			displayModalVideoAndMessage(
 				dialledBoy,
-				dialledBoy.gameAttributes.isAdmirer ? '<b>Congratulations!</b>' : '<b>Better luck next time!</b>',
-				dialledBoy.gameAttributes.isAdmirer ? dialledBoy.gameAttributes.correctAnswerVideo : dialledBoy.gameAttributes.incorrectAnswerVideo
+				dialledBoy.gameAttributes.isAdmirer
+					? '<b>Congratulations!</b>'
+					: '<b>Better luck next time!</b>',
+				dialledBoy.gameAttributes.isAdmirer
+					? dialledBoy.gameAttributes.correctAnswerVideo
+					: dialledBoy.gameAttributes.incorrectAnswerVideo
 			);
 		}
 	}, 200);

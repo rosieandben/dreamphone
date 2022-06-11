@@ -5,6 +5,7 @@ export const startupBoys = JSON.parse(JSON.stringify(boys));
 export const runStartup = () => {
     const admirer = chooseAdmirer(startupBoys);
     allocateVideosAndAnswers(startupBoys, admirer);
+    return admirer;
 }
 
 const chooseAdmirer = (startupBoys) => {

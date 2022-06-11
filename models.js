@@ -49,6 +49,33 @@ const GameAttributes = {
     answerToReveal: null
 }
 
+export const incomingCallBoys = [
+    {
+        name: "Andy",
+        videoUrl: "resources/video/IncomingCalls/Andy.MOV"
+    },
+    {
+        name: "Gary",
+        videoUrl: "resources/video/IncomingCalls/Gary.MOV"
+    },
+    {
+        name: "George",
+        videoUrl: "resources/video/IncomingCalls/George.MOV"
+    },
+    {
+        name: "Scott",
+        videoUrl: "resources/video/IncomingCalls/Scott.MOV"
+    },
+    {
+        name: "Steve",
+        videoUrl: "resources/video/IncomingCalls/Steve.MOV"
+    },
+    {
+        name: "Tony",
+        videoUrl: "resources/video/IncomingCalls/Tony.MOV"
+    },
+]
+
 export const boys = [
     {
         name: 'Dave',
