@@ -68,8 +68,8 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
 
 const constructVideoPaths = (answerAboutOption) => {
     const videoFiles = ['Alex', 'Amy', 'Ben', 'Beth', 'Chloe', 'Chrystal', 'Dad', 'Gemma', 'George', 'Georgia', 'Hannah', 'Jesse', 'Julio', 'Katy',
-     'Kelvin', 'Kelly', 'Lindsey', 'Liz', 'Lesley', 'Megan', 'Mum', 'Rosie', 'Sophie', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
-     '13', '14', '15', '16', '17', '18', '19', '20', '21'];
+     'Kelvin', 'Kelly', 'Lindsey', 'Liz', 'Lesley', 'Megan', 'Mum', 'Rosie', 'Simon', 'Sophie', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+     '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'];
 
     const filePaths = [];
     for (const file of videoFiles) {
