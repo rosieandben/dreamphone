@@ -67,13 +67,13 @@ const setVideosAndAnswers = (answers, videos, boy, answerPhrase) => {
 }
 
 const constructVideoPaths = (answerAboutOption) => {
-    const videoFiles = ['Alex.mp4', 'Amy.mp4', 'Ben.mp4', 'Beth.mp4', 'Chloe.mp4', 'Chrystal.mp4', 'Dad.mp4', 'Gemma.mp4', 'George.mp4', 'Georgia.mp4', 'Hannah.mp4', 'Jesse.mp4', 'Julio.mp4', 'Katy.mp4',
-     'Kelvin.mp4', 'Kelly.mp4', 'Lindsey.mp4', 'Liz.mp4', 'Lesley.mp4', 'Megan.mp4', 'Mum.mp4', 'Rosie.mp4', 'Sophie.mp4', '1.MOV', '2.mp4', '3.mp4', '4.mp4', '5.mp4', '6.mp4', '7.mp4', '8.mp4',
-     '9.mp4', '10.mp4', '11.mp4', '12.mp4', '13.mp4', '14.mp4', '15.mp4', '16.mp4', '17.mp4', '18.mp4', '19.mp4', '20.mp4', '21.mp4'];
+    const videoFiles = ['Alex', 'Amy', 'Ben', 'Beth', 'Chloe', 'Chrystal', 'Dad', 'Gemma', 'George', 'Georgia', 'Hannah', 'Jesse', 'Julio', 'Katy',
+     'Kelvin', 'Kelly', 'Lindsey', 'Liz', 'Lesley', 'Megan', 'Mum', 'Rosie', 'Sophie', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
+     '13', '14', '15', '16', '17', '18', '19', '20', '21'];
 
     const filePaths = [];
     for (const file of videoFiles) {
-        filePaths.push(`resources/video/${answerAboutOption}/${file}`);
+        filePaths.push(`resources/video/${answerAboutOption}/${file}.mp4`);
     }
     return filePaths;
 }
