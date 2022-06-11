@@ -8,7 +8,7 @@ const admirerIndex = incomingCallBoysLocal.findIndex(
 	(boy) => boy.name === admirer.name
 );
 if (admirerIndex > -1) {
-	incomingCallBoysLocal.splice(admirerIndex);
+	incomingCallBoysLocal.splice(admirerIndex, 1);
 }
 
 let turn = 0;
@@ -21,15 +21,24 @@ const setIncomingCall = () => {
 		];
 	const message = `${incomingCallBoy.name} is not into you, sorry!`;
 
+	let audio =  new Audio("resources/ringing.mp3");
+	$('.container').toggleClass('ringing');
+	audio.play();
+
 	$('#dream-answer').hide();
 	$('#dream-video').show();
 	setTimeout(() => {
-		displayModalVideoAndMessage(
-			incomingCallBoy,
-			message,
-			incomingCallBoy.videoUrl
-		);
-	}, 200);
+		$('.container').toggleClass('ringing');
+		audio.pause();
+		audio = null;
+		setTimeout(() => {
+			displayModalVideoAndMessage(
+				incomingCallBoy,
+				message,
+				incomingCallBoy.videoUrl
+			);
+		}, 200);
+	}, 9000);
 };
 
 $('.modal-exit').on('click', function () {
