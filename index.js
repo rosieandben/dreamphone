@@ -20,7 +20,7 @@ const setIncomingCall = () => {
 		incomingCallBoysLocal[
 			Math.floor(Math.random() * incomingCallBoysLocal.length)
 		];
-	const message = `${incomingCallBoy.name} is not into you, sorry!`;
+	const message = `<b>${incomingCallBoy.name.toUpperCase()}</b> isn't into you, sorry!`;
 
 	let audio = new Audio('resources/ringing.mp3');
 	$('.container').toggleClass('ringing');

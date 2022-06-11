@@ -34,10 +34,10 @@ export const Location = {
 
 export const Clothes = {
     Jeans: 'Jeans',
-    Tie: 'Tie',
-    Jacket: 'Jacket',
+    Tie: 'A Tie',
+    Jacket: 'A Jacket',
     Glasses: 'Glasses',
-    Hat: 'Hat',
+    Hat: 'A Hat',
     Yellow: 'Yellow'
 }
 

@@ -20,7 +20,7 @@ const shuffleCollection = (collection) => {
 
 const generateAnswers = (answerType, admirerAnswer) => {
     const answers = [];
-    for (const type of Object.keys(answerType)) {
+    for (const type of Object.values(answerType)) {
         if (type != admirerAnswer) {
             answers.push(type);
         }
