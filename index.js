@@ -2,11 +2,6 @@ import { generateHeart } from './hearts.js';
 import { runStartup, startupBoys } from './startup.js';
 import { incomingCallBoys } from './models.js';
 
-screen.orientation.lock('portrait').then(
-	(success) => console.log(success),
-	(failure) => console.log(failure)
-);
-
 const admirer = runStartup();
 const incomingCallBoysLocal = JSON.parse(JSON.stringify(incomingCallBoys));
 const admirerIndex = incomingCallBoysLocal.findIndex(
