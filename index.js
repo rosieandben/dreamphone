@@ -14,7 +14,7 @@ if (admirerIndex > -1) {
 const randomIntFromInterval = (min, max, exclusions) => {
 	const num = Math.floor(Math.random() * (max - min + 1) + min);
 	return exclusions.findIndex((excluded) => excluded === num) > -1
-		? generateRandom(min, max)
+		? randomIntFromInterval(min, max, exclusions)
 		: num;
 };
 const incomingCallCount = randomIntFromInterval(3, 5, []);
@@ -98,6 +98,8 @@ $('.digit').on('click', function () {
 			(x) => x.number === $('#output').text().replace('#', '')
 		);
 		guess(dialledBoy);
+	} else if (digitCount > 7) {
+		dial(null);
 	} else {
 		digitCount++;
 	}
