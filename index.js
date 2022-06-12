@@ -98,9 +98,10 @@ $('.digit').on('click', function () {
 			(x) => x.number === $('#output').text().replace('#', '')
 		);
 		guess(dialledBoy);
-	} else if (digitCount > 7) {
-		dial(null);
 	} else {
+		if (digitCount === 0 && $('#output').text().length > 1) {
+			return;
+		}
 		digitCount++;
 	}
 });
