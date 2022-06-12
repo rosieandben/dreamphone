@@ -11,6 +11,18 @@ if (admirerIndex > -1) {
 	incomingCallBoysLocal.splice(admirerIndex, 1);
 }
 
+const randomIntFromInterval = (min, max, exclusions) => {
+	const num = Math.floor(Math.random() * (max - min + 1) + min);
+	return exclusions.findIndex((excluded) => excluded === num) > -1
+		? generateRandom(min, max)
+		: num;
+};
+const incomingCallCount = randomIntFromInterval(3, 5, []);
+const incomingCallTurns = [];
+for (let i = 0; i < incomingCallCount; i++) {
+	incomingCallTurns.push(randomIntFromInterval(3, 19, incomingCallTurns));
+}
+
 let turn = 0;
 let digitCount = 0;
 let disableIncomingCall = false;
@@ -41,7 +53,7 @@ const setIncomingCall = () => {
 				true
 			);
 		}, 200);
-	}, 9000);
+	}, 5000);
 
 	const indexOfUsedBoy = incomingCallBoysLocal.findIndex(
 		(boy) => boy === incomingCallBoy
@@ -54,7 +66,11 @@ $('.modal-exit').on('click', function () {
 	video.pause();
 	video.currentTime = 0;
 	$('.modal').toggleClass('open');
-	if ((turn === 3 || turn === 5 || turn === 8) && !disableIncomingCall) {
+	const indexOfTurn = incomingCallTurns.findIndex(
+		(callTurn) => callTurn === turn
+	);
+	if (indexOfTurn > -1 && !disableIncomingCall) {
+		incomingCallTurns.splice(indexOfTurn, 1);
 		setIncomingCall();
 	}
 });
