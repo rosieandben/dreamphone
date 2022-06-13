@@ -18,9 +18,10 @@ const randomIntFromInterval = (min, max, exclusions) => {
 		: num;
 };
 const incomingCallCount = randomIntFromInterval(3, 5, []);
-const incomingCallTurns = [];
-for (let i = 0; i < incomingCallCount; i++) {
-	incomingCallTurns.push(randomIntFromInterval(3, 19, incomingCallTurns));
+// fix first incoming call to turn 3, 4 or 5
+const incomingCallTurns = [randomIntFromInterval(3, 5, [])];
+for (let i = 0; i < incomingCallCount - 1; i++) {
+	incomingCallTurns.push(randomIntFromInterval(6, 19, incomingCallTurns));
 }
 
 let turn = 0;
