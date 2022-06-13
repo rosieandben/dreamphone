@@ -52,27 +52,27 @@ const GameAttributes = {
 export const incomingCallBoys = [
     {
         name: "Andy",
-        videoUrl: "resources/video/IncomingCalls/Andy.MOV"
+        videoUrl: "resources/video/IncomingCalls/Andy.mp4"
     },
     {
         name: "Gary",
-        videoUrl: "resources/video/IncomingCalls/Gary.MOV"
+        videoUrl: "resources/video/IncomingCalls/Gary.mp4"
     },
     {
         name: "George",
-        videoUrl: "resources/video/IncomingCalls/George.MOV"
+        videoUrl: "resources/video/IncomingCalls/George.mp4"
     },
     {
         name: "Scott",
-        videoUrl: "resources/video/IncomingCalls/Scott.MOV"
+        videoUrl: "resources/video/IncomingCalls/Scott.mp4"
     },
     {
         name: "Steve",
-        videoUrl: "resources/video/IncomingCalls/Steve.MOV"
+        videoUrl: "resources/video/IncomingCalls/Steve.mp4"
     },
     {
         name: "Tony",
-        videoUrl: "resources/video/IncomingCalls/Tony.MOV"
+        videoUrl: "resources/video/IncomingCalls/Tony.mp4"
     },
 ]
 
